@@ -69,7 +69,7 @@
 	}
 	
 </script>	
-<body>
+
 <?php
 	session_start();
 	if(!$_SESSION['id']){
@@ -113,7 +113,7 @@
 <?php
 	}
 ?>
-</body>
+
 <?php
 	include '/var/www/html/test/include/footer.php';
 ?>

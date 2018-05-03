@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>회원가입</title>
-<link rel="stylesheet" href="/test/css/join.css" />
-</head>
-
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<?php
+	include '/var/www/html/test/include/header.php';
+?>
 <script>
 	function login(){
-
+		if($('#id').val() == ""){
+			alert("아이디를 입력해주세요.");
+			return false;
+		}
+		if($('#password').val() == ""){
+			alert("비번을 입력해주세요.");
+			return false;
+		}
 		$.ajax({
 			url : '/test/ajax/login_action.php',
 			type : 'post',
@@ -32,7 +34,7 @@
 					alert('로그인이 완료되었습니다.');
 					location.href = "/test/index.php";
 				}else {
-					alert('아이디나 비밀번호가 일치하지 않습니다.');
+					alert('아이디와 비밀번호가 일치하지 않습니다.');
 				}
 			}
 		});
@@ -112,4 +114,6 @@
 	}
 ?>
 </body>
-</html>
+<?php
+	include '/var/www/html/test/include/footer.php';
+?>

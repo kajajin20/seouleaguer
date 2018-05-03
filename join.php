@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>회원가입</title>
-<link rel="stylesheet" href="/test/css/join.css" />
-</head>
+<?php
+	include '/var/www/html/test/include/header.php';
+?>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	function setValidate(){
@@ -124,4 +121,6 @@
 </form>
 </div>
 </body>
-</html>
+<?php
+	include '/var/www/html/test/include/footer.php';
+?>

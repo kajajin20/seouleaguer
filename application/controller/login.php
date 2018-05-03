@@ -26,6 +26,7 @@ class login extends Controller
 	public function logout_action(){
 		session_start();
 		$_SESSION['id'] = "";
+		session_destroy();
 		exit('{"msg":"success"}');
 	}
 }

@@ -68,9 +68,8 @@
 </script>	
 
 <?php
-
 	session_start();
-	if(!$_SESSION['id']){
+	if(empty($_SESSION['id'])){
 ?>
 <div id="stylized" class="myform">
 	<form id="form" name="form" method="post">

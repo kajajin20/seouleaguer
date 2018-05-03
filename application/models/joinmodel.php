@@ -11,7 +11,6 @@ class JoinModel
 	}
 	public function login_check($id)
 	{	
-		header("Content-Type: application/json;charset=utf-8");
 		$sql = "select * from user_table where id = '".$id."' ";
 		$query = $this->db->prepare($sql);
 		$query->execute();

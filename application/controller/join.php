@@ -24,13 +24,11 @@ class join extends Controller
 		
 		$login_id = $join_model->login_check($id);
 		$array = (array)$login_id;
-		/*
-		if($array['id'] == NULL){
 		
-		}else if($id == $array['id']){
+		if($id == $array['id']){
 			exit('{"msg":"id_chk"}');
 		};
-		*/
+		
 		$login_id = $join_model->insertMember($id, $name, $password, $email, $age, $sex);
 		exit('{"msg":"success"}');
 	}

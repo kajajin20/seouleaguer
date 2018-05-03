@@ -20,7 +20,15 @@ class JoinModel
 	 
 	public function insertMember($id, $name, $password, $email, $age, $sex)
 	{
-		header("Content-Type: application/json;charset=utf-8");
+		$sql = "set session character_set_connection=utf8 ";
+		$query = $this->db->prepare($sql);
+		$query->execute();
+		$sql = "set session character_set_results=utf8 ";
+		$query = $this->db->prepare($sql);
+		$query->execute();
+		$sql = "set session character_set_client=utf8 ";
+		$query = $this->db->prepare($sql);
+		$query->execute();
 		$sql = "insert into user_table (id,name,password,email,age,sex) values('".$id."','".$name."','".$password."','".$email."',".$age.",'".$sex."') ";
 		$query = $this->db->prepare($sql);
 		$query->execute();

@@ -1,6 +1,4 @@
-<?php
-	include '/var/www/html/test/include/header.php';
-?>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	function setValidate(){
@@ -45,7 +43,7 @@
 	}
 	function insert_submit(){
 		$.ajax({
-			url : '/test/ajax/join_action.php',
+			url : '/join/join_action',
 			type : 'post',
 			data : {
 				'id': $('#id').val(),
@@ -69,7 +67,7 @@
 				if(!json) return;
 				if(json['msg'] === 'success') {
 					alert('회원가입이 완료되었습니다.');
-					location.href="/test/index.php";
+					location.href="/";
 				}else if(json['msg'] ==='id_chk'){
 					alert('중복된 아이디가 있습니다.');
 				}
@@ -120,6 +118,3 @@
 		<div class="spacer"></div>
 </form>
 </div>
-<?php
-	include '/var/www/html/test/include/footer.php';
-?>

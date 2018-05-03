@@ -79,7 +79,7 @@
 	}
 	
 </script>
-<body>
+
 <div id="stylized" class="myform">
 	<form id="insert_form" name="form" action="join_action.php" method="post">
 		<h1>회원가입 폼</h1>
@@ -120,7 +120,6 @@
 		<div class="spacer"></div>
 </form>
 </div>
-</body>
 <?php
 	include '/var/www/html/test/include/footer.php';
 ?>

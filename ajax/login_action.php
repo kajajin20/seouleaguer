@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json;charset=utf-8");
-include_once '../common/DBcon.php';
+include_once '../config/DBcon.php';
 
 $id = $_POST['id'];
 $password = md5($_POST['password']);
@@ -12,6 +12,8 @@ $rslt = mysql_fetch_array($result);
  
 if($id == $rslt['id']){
 	mysql_close($conn); 
+	session_start();
+	$_SESSION['id'] = $id;
 	exit('{"msg":"success"}');
 	
 }else{

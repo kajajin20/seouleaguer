@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json;charset=utf-8");
-include_once '../common/DBcon.php';
+include_once '../config/DBcon.php';
 
 $id = $_POST['id'];
 $name = $_POST['name'];

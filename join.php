@@ -4,10 +4,49 @@
 <title>회원가입</title>
 <link rel="stylesheet" href="/test/css/join.css" />
 </head>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+	function setValidate(){
+		
+		var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+		
+		if($("#id").val() == ""){
+			alert("아이디를 입력하셔야 합니다.");
+			return false;
+		}
+		if($("#name").val() == ""){
+			alert("이름을 입력하셔야 합니다.");
+			return false;
+		}	
+		if($("#password").val() == ""){
+			alert("비번을 입력하셔야 합니다.");
+			return false;
+		}
+		if($("#password_chk").val() == ""){
+			alert("비번확인을 입력하셔야 합니다.");
+			return false;
+		}
+		if($("#password_chk").val() != $("#password").val()){
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+		}	
+		if($("#email").val() == ""){
+			alert("이메일를 입력하셔야 합니다.");
+			return false;
+		}
+		
+		if (!regEmail.test($("#email").val())) {
+      		alert("잘못된 메일형식입니다.");
+      		return false;
+		}
+		if($("#age").val() == ""){
+			alert("나이를 입력하셔야 합니다.");
+			return false;
+		}
+		
+		insert_submit();
+	}
 	function insert_submit(){
-
 		$.ajax({
 			url : '/test/ajax/join_action.php',
 			type : 'post',
@@ -33,6 +72,7 @@
 				if(!json) return;
 				if(json['msg'] === 'success') {
 					alert('회원가입이 완료되었습니다.');
+					location.href="/test/index.php";
 				}else if(json['msg'] ==='id_chk'){
 					alert('중복된 아이디가 있습니다.');
 				}
@@ -79,7 +119,7 @@
 		  <option value="W" selected="selected">여자</option>
 		</select>
 		
-		<button type="button" onclick="insert_submit();">가입하기</button>
+		<button type="button" onclick="setValidate();">가입하기</button>
 		<div class="spacer"></div>
 </form>
 </div>

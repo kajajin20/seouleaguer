@@ -14,7 +14,7 @@ class JoinModel
 		$sql = "select * from user_table where id = '".$id."' ";
 		$query = $this->db->prepare($sql);
 		$query->execute();
-		return $query->fetch();
+		return $query->fetchAll();
 	}
 
 	 

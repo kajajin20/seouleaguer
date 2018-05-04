@@ -13,15 +13,17 @@ class login extends Controller
 		$password = md5($_POST['password']);
 		$login_id = $login_model->getLoginId($id, $password);
 		$array = (array)$login_id;
-
-		if($id == $array['id']){
-			session_start();
-			$_SESSION['id'] = $id;
-			exit('{"msg":"success"}');
-			
+		if(!empty($array['id'])){
+			if($id == $array['id']){
+				session_start();
+				$_SESSION['id'] = $id;
+				exit('{"msg":"success"}');
+				
+			}
 		}else{
-			exit('{"msg":"fail"}');
+				exit('{"msg":"fail"}');
 		}
+		
 	}
 	public function logout_action(){
 		session_start();

@@ -26,11 +26,13 @@ class timeline extends Controller
 									<label for='work".$i."'>".$result[$i]['name']."</label>
 									<span class='date'>".$result[$i]['regdate']."</span>
 									<span class='circle'></span>
-									</div>
-									<div class='content'>
+									
+								</div>
+								<div class='content'>
 									<p>
 									".$result[$i]['memo']."
 									</p>
+									<img src='".$result[$i]['imagepath'].$result[$i]['image']."'style='width:100%;height:50%;'/>
 								</div>
 							</li> ";
 			}else{
@@ -45,6 +47,7 @@ class timeline extends Controller
 									<p>
 									".$result[$i]['memo']."
 									</p>
+									<img src='".$result[$i]['imagepath'].$result[$i]['image']."'style='width:100%;height:50%;'/>
 								</div>
 							  </li> ";
 			

@@ -9,7 +9,6 @@ height: 60%;
 
 
 $(function(){
-	$('#loading').hide();
 	list_select();
 });
 $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 액션
@@ -19,15 +18,12 @@ $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 액�
 });
 
 function list_select(){
-	
+	//$("#timeline").empty();
 	var start_cnt = $("#start_cnt").val();
 	var end_cnt = $("#end_cnt").val();
 	start_cnt *=1;
 	end_cnt *=1;
-
-
-
-
+		$('#loading').show();
 		$.ajax({
 			url : '/timeline/timeline_list2',
 			type : 'post',
@@ -48,21 +44,31 @@ function list_select(){
 			},
 			dataType: 'json',
 			success: function(json) {
-				new Vue({
-				  el: '#timeline',
-				  data: {
-					posts: [] // initialize empty array
-				  },
-				  mounted() { // when the Vue app is booted up, this is run automatically.
-					var self = this // create a closure to access component in the callback below
-					  self.posts = json;
-				  }
+				var html = "";
+				$.each(json,function(index,data){
+
+						html +=	"<li class='work'>";
+						html +=		"<input class='radio' name='works' type='radio'checked>";
+						html +=		"<div class='relative'>";
+						html +=			"<label for='work'>"+data.name+"</label>";
+						html +=			"<span class='date'>"+data.regdate+"</span>";
+						html +=			"<span class='circle'></span>";
+						html +=			"</div>";
+						html +=			"<div class='content'>";
+						html +=			"<p>"+data.memo+"</p>";
+						if(data.image != ""){
+							html +=	"<img src='"+data.imagepath+""+data.image+"'style='width:50%;height:50%;'/>";
+						}
+						html +=	"</div>";
+						html +=	"</li>"; 
+
 				})
+					$('#loading').hide();
+					$("#timeline").append(html);
 			}
 		});
-	
 	$("#start_cnt").val(start_cnt + 10);
-	
+	//$("#end_cnt").val(end_cnt + 10);
 	
 }
 
@@ -118,23 +124,6 @@ function insert_submit(){
 <div id="loading"><img id="loading-image" src="/public/img/loading.gif" alt="Loading..." style="width:80px";/></div>
 <input type="hidden" name='start_cnt' id="start_cnt" value="0"/>
 <input type="hidden" name='end_cnt' id="end_cnt" value="10"/>
-
-
 <ul id='timeline'>
-	<li v-for="(item, index) in posts" class='work'>
-		<input class='radio' name='works' type='radio'checked>
-		<div class='relative'>
-			<label for='work'>{{item.name}}</label>
-			<span class='date'>{{item.regdate}}</span>
-			<span class='circle'></span>
-		</div>
-		<div v-if="item.image != '' " class='content'>
-			<p>{{item.memo}}</p>
-			<img v-bind:src="item.imagepath+''+item.image" style='width:50%;height:50%;'/>	
-		</div>
-		<div v-else class='content'>
-			<p>{{item.memo}}</p>
-		</div>
-	</li>
-</ul>
 
+</ul>

@@ -56,7 +56,9 @@ function list_select(){
 						html +=			"</div>";
 						html +=			"<div class='content'>";
 						html +=			"<p>"+data.memo+"</p>";
-						html +=	"<img src='"+data.imagepath+""+data.image+"'style='width:50%;height:50%;'/>";
+						if(data.image != ""){
+							html +=	"<img src='"+data.imagepath+""+data.image+"'style='width:50%;height:50%;'/>";
+						}
 						html +=	"</div>";
 						html +=	"</li>"; 
 
@@ -66,7 +68,7 @@ function list_select(){
 			}
 		});
 	$("#start_cnt").val(start_cnt + 10);
-	$("#end_cnt").val(end_cnt + 10);
+	//$("#end_cnt").val(end_cnt + 10);
 	
 }
 
@@ -102,18 +104,18 @@ function insert_submit(){
 }
 </script>
 
-<h2>HoonsTimeline!</h2>
-<p>테스트중입니다.</p>
+<h1>타임라인</h1>
+</br>
 <form class="form_default" roll="group"  action="/timeline/timeline_insert" name="frm_input" id="frm_input"  method="post" enctype="multipart/form-data">
-	<span>등록자:</span><input type="text" name='name' id="name" /></br>
-	<span>내용:</span><textarea name='memo' id="memo"></textarea></br>
+	<span>등록자</span><input type="text" name='name' id="name" /></br>
+	<span>내용</span><textarea class ="noresize" name='memo' id="memo" style="width:100%;height:150px" ></textarea></br>
 	<span>이미지:</span><input type="file" name="myfile" id="myfile"></br>
-	<button type="button" onclick="insert_submit();">회원가입</button>
+	<button class="button" type="button" onclick="insert_submit();">등록</button>
 
 </form>
 <div id="loading"><img id="loading-image" src="/public/img/loading.gif" alt="Loading..." /></div>
 <input type="hidden" name='start_cnt' id="start_cnt" value="0"/>
-<input type="hidden" name='end_cnt' id="end_cnt" value="9"/>
+<input type="hidden" name='end_cnt' id="end_cnt" value="10"/>
 <ul id='timeline'>
 
 </ul>

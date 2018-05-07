@@ -47,6 +47,7 @@ function list_select(){
 						html +=			"<img src='"+data.imagepath+""+data.image+"' alt='Graphic'>";
 						html +=		"</div>";
 						html +=	"</div>";
+					
 				})
 					$("#timelinearea").append(html);
 			}

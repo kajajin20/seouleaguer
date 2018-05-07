@@ -130,7 +130,7 @@ function insert_submit(){
 		</div>
 		<div v-if="item.image != '' " class='content'>
 			<p>{{item.memo}}</p>
-			<img v-bind:src="item.imagepath+''+item.image" style='width:50%;height:50%;'/>	
+			<img v-bind:src="item.imagepath+''+item.image" style='width:50%;height:50%;margin-left: auto; margin-right: auto; display: block;'/>	
 		</div>
 		<div v-else class='content'>
 			<p>{{item.memo}}</p>

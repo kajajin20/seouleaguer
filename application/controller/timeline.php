@@ -17,8 +17,8 @@ class timeline extends Controller
 
 
 		$timeline_model = $this->loadModel('TimelineModel');
-		$start_cnt = $_POST['start_cnt'];
-		$end_cnt = $_POST['end_cnt'];
+		$start_cnt = $_GET['start_cnt'];
+		$end_cnt = $_GET['end_cnt'];
 		$data = $timeline_model->timeline_select($start_cnt, $end_cnt);
 		exit(json_encode($data));
 

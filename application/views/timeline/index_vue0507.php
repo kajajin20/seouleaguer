@@ -8,14 +8,13 @@ height: 60%;
 <script>
 
 
-
 $(function(){
 	$('#loading').hide();
-	
+	list_select();
 });
 $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 액션
      if($(window).scrollTop() >= $(document).height() - $(window).height()){
-		list();
+		list_select();
      } 
 });
 
@@ -49,7 +48,16 @@ function list_select(){
 			},
 			dataType: 'json',
 			success: function(json) {
-
+				new Vue({
+				  el: '#timeline',
+				  data: {
+					posts: [] // initialize empty array
+				  },
+				  mounted() { // when the Vue app is booted up, this is run automatically.
+					var self = this // create a closure to access component in the callback below
+					  self.posts = json;
+				  }
+				})
 			}
 		});
 	
@@ -113,52 +121,20 @@ function insert_submit(){
 
 
 <ul id='timeline'>
-	<li v-for="post in posts" class='work'>
+	<li v-for="(item, index) in posts" class='work'>
 		<input class='radio' name='works' type='radio'checked>
 		<div class='relative'>
-			<label for='work'>{{post.name}}</label>
-			<span class='date'>{{post.regdate}}</span>
+			<label for='work'>{{item.name}}</label>
+			<span class='date'>{{item.regdate}}</span>
 			<span class='circle'></span>
 		</div>
-		<div v-if="post.image != '' " class='content'>
-			<p>{{post.memo}}</p>
-			<img v-bind:src="post.imagepath+''+post.image" style='width:50%;height:50%;margin-left: auto; margin-right: auto; display: block;'/>	
+		<div v-if="item.image != '' " class='content'>
+			<p>{{item.memo}}</p>
+			<img v-bind:src="item.imagepath+''+item.image" style='width:50%;height:50%;margin-left: auto; margin-right: auto; display: block;'/>	
 		</div>
 		<div v-else class='content'>
-			<p>{{post.memo}}</p>
+			<p>{{item.memo}}</p>
 		</div>
 	</li>
 </ul>
-<script>
-var start_cnt = $("#start_cnt").val();
-var end_cnt = $("#end_cnt").val();
-
-var list = new Vue({
-	el: '#timeline',
-	data: {
-		posts: []
-	},
-	created(){
-		fetch('/timeline/timeline_list2?start_cnt='+start_cnt+'&end_cnt='+end_cnt+'',{
-			method:'GET'//post 메소드
-			
-		}).then((response)=>{
-				if(response.ok){
-					return response.json();
-				}
-				throw new Error('error');
-
-		}).then((json)=>{
-			this.posts = json;
-
-		})
-		.catch((error)=>{
-			console.log(error);
-		});
-
-	}
-
-
-});
-</script>
 

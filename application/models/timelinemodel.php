@@ -21,7 +21,7 @@ class TimelineModel
 		$sql = "set session character_set_client=utf8 ";
 		$query = $this->db->prepare($sql);
 		$query->execute();
-		$sql = "select * from user_timeline limit ".$start_cnt.", ".$end_cnt."  ";
+		$sql = "select * from user_timeline order by idx desc limit ".$start_cnt.", ".$end_cnt." ";
 		$query = $this->db->prepare($sql);
 		$query->execute();
 		return $query->fetchAll();

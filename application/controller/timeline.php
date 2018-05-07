@@ -7,6 +7,25 @@ class timeline extends Controller
 		require 'application/views/timeline/index.php';
 		require 'application/views/_templates/footer.php';
 	}
+	public function index2()
+	{
+		require 'application/views/_templates/header.php';
+		require 'application/views/timeline/index2.php';
+		require 'application/views/_templates/footer.php';
+	}
+	public function timeline_list2(){
+
+
+		$timeline_model = $this->loadModel('TimelineModel');
+		$start_cnt = $_POST['start_cnt'];
+		$end_cnt = $_POST['end_cnt'];
+		$data = $timeline_model->timeline_select($start_cnt, $end_cnt);
+		exit(json_encode($data));
+
+
+	
+	}
+
 	public function timeline_list(){
 		$timeline_model = $this->loadModel('TimelineModel');
 		$start_cnt = $_GET['start_cnt'];
@@ -32,7 +51,7 @@ class timeline extends Controller
 									<p>
 									".$result[$i]['memo']."
 									</p>
-									<img src='".$result[$i]['imagepath'].$result[$i]['image']."'style='width:100%;height:50%;'/>
+									<img src='".$result[$i]['imagepath'].$result[$i]['image']."'style='width:50%;height:50%;'/>
 								</div>
 							</li> ";
 			}else{
@@ -47,7 +66,7 @@ class timeline extends Controller
 									<p>
 									".$result[$i]['memo']."
 									</p>
-									<img src='".$result[$i]['imagepath'].$result[$i]['image']."'style='width:100%;height:50%;'/>
+									<img src='".$result[$i]['imagepath'].$result[$i]['image']."'style='width:50%;height:50%;'/>
 								</div>
 							  </li> ";
 			

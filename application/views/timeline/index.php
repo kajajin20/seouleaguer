@@ -1,8 +1,8 @@
 <style>
 elector img{
 position: absolute; top:0; left: 0;
-width: 100%;
-height: 100%;
+width: 60%;
+height: 60%;
 
 </style>
 <script>
@@ -16,6 +16,62 @@ $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 액�
 		list_select();
      } 
 });
+
+function list_select(){
+	//$("#timeline").empty();
+	var start_cnt = $("#start_cnt").val();
+	var end_cnt = $("#end_cnt").val();
+	start_cnt *=1;
+	end_cnt *=1;
+		$('#loading').show();
+		$.ajax({
+			url : '/timeline/timeline_list2',
+			type : 'post',
+			data : {
+				'start_cnt': start_cnt,
+				'end_cnt': end_cnt
+			},
+			beforeSend: function() {
+				//요청전
+				
+			},
+			complete: function() {
+				//요청완료
+				
+			},
+			error: function() {
+				//요청실패
+			},
+			dataType: 'json',
+			success: function(json) {
+				var html = "";
+				$.each(json,function(index,data){
+
+						html +=	"<li class='work'>";
+						html +=		"<input class='radio' name='works' type='radio'checked>";
+						html +=		"<div class='relative'>";
+						html +=			"<label for='work'>"+data.name+"</label>";
+						html +=			"<span class='date'>"+data.regdate+"</span>";
+						html +=			"<span class='circle'></span>";
+						html +=			"</div>";
+						html +=			"<div class='content'>";
+						html +=			"<p>"+data.memo+"</p>";
+						html +=	"<img src='"+data.imagepath+""+data.image+"'style='width:50%;height:50%;'/>";
+						html +=	"</div>";
+						html +=	"</li>"; 
+
+				})
+					$('#loading').hide();
+					$("#timeline").append(html);
+			}
+		});
+	$("#start_cnt").val(start_cnt + 10);
+	$("#end_cnt").val(end_cnt + 10);
+	
+}
+
+
+/*구버전
 function list_select(){
 	//$("#timeline").empty();
 	var start_cnt = $("#start_cnt").val();
@@ -38,6 +94,7 @@ function list_select(){
 	$("#end_cnt").val(end_cnt + 10);
 	
 }
+*/
 function insert_submit(){
 	
 	$("#frm_input").submit();
@@ -54,6 +111,7 @@ function insert_submit(){
 	<button type="button" onclick="insert_submit();">회원가입</button>
 
 </form>
+<div id="loading"><img id="loading-image" src="/public/img/loading.gif" alt="Loading..." /></div>
 <input type="hidden" name='start_cnt' id="start_cnt" value="0"/>
 <input type="hidden" name='end_cnt' id="end_cnt" value="9"/>
 <ul id='timeline'>

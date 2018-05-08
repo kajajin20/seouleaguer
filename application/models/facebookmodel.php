@@ -43,5 +43,30 @@ class FacebookModel
 		$query->execute();
 
 	}
+	public function login_check($id)
+	{	
+		$sql = "select * from user_table where id = '".$id."' ";
+		$query = $this->db->prepare($sql);
+		$query->execute();
+		return $query->fetchAll();
+	}
+
+	 
+	public function insertMember($id, $name, $password, $sex)
+	{
+		$sql = "set session character_set_connection=utf8 ";
+		$query = $this->db->prepare($sql);
+		$query->execute();
+		$sql = "set session character_set_results=utf8 ";
+		$query = $this->db->prepare($sql);
+		$query->execute();
+		$sql = "set session character_set_client=utf8 ";
+		$query = $this->db->prepare($sql);
+		$query->execute();
+		$sql = "insert into user_table (id,name,password,sex) values('".$id."','".$name."','".$password."','".$sex."') ";
+		$query = $this->db->prepare($sql);
+		$query->execute();
+
+	}
 
 }

@@ -82,5 +82,27 @@ class facebook extends Controller
 
 		echo"<script>location.href='/facebook/timeline'</script>";
 	}
+	public function join_action()
+	{
+		header("Content-Type: application/json;charset=utf-8");
+		$facebook_model = $this->loadModel('FacebookModel');
+		$id = $_POST['id'];
+		$name = $_POST['name'];
+		$password = md5($_POST['password']);
+		$sex = $_POST['sex'];
+		
+		$login_id = $facebook_model->login_check($id);
+		$array = (array)$login_id;
+		if(!empty($array['id'])){
+			if($id == $array['id']){
+				exit('{"msg":"id_chk"}');
+			};
+		}
+		
+		
+		$facebook_model->insertMember($id, $name, $password, $sex);
+
+		exit('{"msg":"success"}');
+	}
 
 }

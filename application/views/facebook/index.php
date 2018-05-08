@@ -44,12 +44,50 @@
 		});
 		
 	}
-	function logout(){
+
+	function setValidate(){
+		
+		var name = "";
+
+		if($("#firstname").val() == ""){
+			alert("성을 입력하셔야 합니다.");
+			return false;
+		}	
+		if($("#surname").val() == ""){
+			alert("이름을 입력하셔야 합니다.");
+			return false;
+		}	
+		if($("#joinid").val() == ""){
+			alert("아이디를 입력하셔야 합니다.");
+			return false;
+		}
+		if($("#joinpassword").val() == ""){
+			alert("비번을 입력하셔야 합니다.");
+			return false;
+		}
+		name = $("#firstname").val()+$("#surname").val();
+		if($('input:radio[name=sex1]').is(':checked')){
+			$("#sex").val('W');
+		}else if($('input:radio[name=sex1]').is(':checked')){
+			$("#sex").val('M');
+		}
+
+
+
+		$("#name").val(name);
+		
+		insert_submit();
+	}
+
+	function insert_submit(){
 		$.ajax({
-			url : '/facebook/logout_action',
+			url : '/facebook/join_action',
 			type : 'post',
 			data : {
-
+				'id': $('#joinid').val(),
+				'name': $('#name').val(),
+				'password': $('#joinpassword').val(),
+				'sex': $('#sex').val()
 			},
 			beforeSend: function() {
 				//요청전
@@ -64,8 +102,10 @@
 			success: function(json) {
 				if(!json) return;
 				if(json['msg'] === 'success') {
-					alert('로그아웃 되었습니다.');
-					location.href = "/facebook/index";
+					alert('회원가입이 완료되었습니다.');
+					location.href="/facebook/index";
+				}else if(json['msg'] ==='id_chk'){
+					alert('중복된 아이디가 있습니다.');
 				}
 			}
 		});
@@ -94,8 +134,10 @@
 <h1>가입하기</h1>
 <p>항상 지금처럼 무료로 즐겨용!!</p>
 <li><input type="text" placeholder="성(姓)" id="firstname"><input type="text" placeholder="이름(성은 제외)" id="surname"></li>
-<li><input type="text" placeholder="휴대폰 번호 또는 이메일"></li>
-<li><input type="password" placeholder="새 비밀번호"></li>
+<li><input type="text" id="joinid" placeholder="아이디"></li>
+<li><input type="password" id="joinpassword" placeholder="새 비밀번호"></li>
+<input type="hidden" id="name">
+<input type="hidden" id="sex">
 <p>Birthday</p>
 <li>
 <select><option>Day</option></select>
@@ -103,9 +145,9 @@
 <select><option>Year</option></select>
 <a href="">Why do I need to provide my date of birth?</a>
 </li>
-<li><input type="radio">여성 <input type="radio">남성</li>
+<li><input type="radio" name="sex1" value="W">여성 <input type="radio" name="sex2" value="M">남성</li>
 <li id="terms">By clicking Create an account, you agree to our <a href="">Terms</a> and that <br>you have read our <a href="">Data Policy</a>, including our <a href="">Cookie Use</a>.</li>
-<li><input type="submit" value="Create an account"></li>
+<li><button type="button" onclick="setValidate();">가입하기</button></li>
 <li id="create_page"><a href="">Create a Page</a> for a celebrity, band or business.</li>
 </div>
 

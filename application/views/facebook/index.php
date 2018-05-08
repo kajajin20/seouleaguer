@@ -1,16 +1,84 @@
 <html>
 <head>
 <link href="/public/css/facebook.css" type="text/css" rel="stylesheet"/>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/public/js/vue.js"></script>
 </head>
 <body>
+<script>
+	function login(){
+		if($('#id').val() == ""){
+			alert("아이디를 입력해주세요.");
+			return false;
+		}
+		if($('#password').val() == ""){
+			alert("비번을 입력해주세요.");
+			return false;
+		}
+		$.ajax({
+			url : '/facebook/login_action',
+			type : 'post',
+			data : {
+				'id': $('#id').val(),
+				'password': $('#password').val()
+			},
+			beforeSend: function() {
+				//요청전
+			},
+			complete: function() {
+				//요청완료
+			},
+			error: function() {
+				//요청실패
+			},
+			dataType: 'json',
+			success: function(json) {
+				if(!json) return;
+				if(json['msg'] === 'success') {
+					alert('로그인이 완료되었습니다.');
+					location.href = "/facebook/timeline";
+				}else {
+					alert('아이디와 비밀번호가 일치하지 않습니다.');
+				}
+			}
+		});
+		
+	}
+	function logout(){
+		$.ajax({
+			url : '/facebook/logout_action',
+			type : 'post',
+			data : {
 
+			},
+			beforeSend: function() {
+				//요청전
+			},
+			complete: function() {
+				//요청완료
+			},
+			error: function() {
+				//요청실패
+			},
+			dataType: 'json',
+			success: function(json) {
+				if(!json) return;
+				if(json['msg'] === 'success') {
+					alert('로그아웃 되었습니다.');
+					location.href = "/facebook/index";
+				}
+			}
+		});
+		
+	}
+</script>
 <div id="header_wrapper">
  <div id="header">
  <li id="sitename"><a href="/facebook/index">facebook</a></li>
  <form action="post">
- <li>이메일 또는 휴대폰<br><input type="text" name="email"></li>
- <li>비밀번호<br><input type="password" name="password"><br><a href="">Forgotten account?</a></li>
- <li><input type="submit" name="login" value="Log In"></li>
+ <li>이메일 또는 휴대폰<br><input type="text" name="id" id="id"></li>
+ <li>비밀번호<br><input type="password" name="password" id="password" ><br><a href="">Forgotten account?</a></li>
+ <li><button type="button" onclick="login();">로그인</button></li>
  </form>
  </div>
 </div>

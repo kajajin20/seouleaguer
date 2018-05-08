@@ -8,81 +8,24 @@ height: 60%;
 <script>
 
 
-
 $(function(){
 	$('#loading').hide();
+	var end_cnt = $("#end_cnt").val();
+	end_cnt *=1;
+	list.event(end_cnt); // 최초 리스트 호출
+	$("#end_cnt").val(end_cnt + 10);
 	
 });
 $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 액션
      if($(window).scrollTop() >= $(document).height() - $(window).height()){
-		list();
+	    //스크롤 이벤트후 end_cnt 값더한후 리스트 호출
+		var end_cnt = $("#end_cnt").val();
+		end_cnt *=1;
+		$("#end_cnt").val(end_cnt + 10);
+		list.event(end_cnt); 
      } 
 });
 
-function list_select(){
-	
-	var start_cnt = $("#start_cnt").val();
-	var end_cnt = $("#end_cnt").val();
-	start_cnt *=1;
-	end_cnt *=1;
-
-
-
-
-		$.ajax({
-			url : '/timeline/timeline_list2',
-			type : 'post',
-			data : {
-				'start_cnt': start_cnt,
-				'end_cnt': end_cnt
-			},
-			beforeSend: function() {
-				//요청전
-				
-			},
-			complete: function() {
-				//요청완료
-				
-			},
-			error: function() {
-				//요청실패
-			},
-			dataType: 'json',
-			success: function(json) {
-
-			}
-		});
-	
-	$("#start_cnt").val(start_cnt + 10);
-	
-	
-}
-
-
-/*구버전
-function list_select(){
-	//$("#timeline").empty();
-	var start_cnt = $("#start_cnt").val();
-	var end_cnt = $("#end_cnt").val();
-	start_cnt *=1;
-	end_cnt *=1;
-    $.get("/timeline/timeline_list" ,
-        {
-            start_cnt : start_cnt,
-			end_cnt : end_cnt
-        },
-        function(rslt){
-			if(start_cnt == 0){
-				$("#timeline").html(rslt);
-			}else{
-				$("#timeline").append(rslt);
-			}
-        });
-	$("#start_cnt").val(start_cnt + 10);
-	$("#end_cnt").val(end_cnt + 10);
-	
-}
-*/
 function insert_submit(){
 	if($("#name").val() == ""){
 		alert("등록자를 입력해주세요.");
@@ -130,35 +73,32 @@ function insert_submit(){
 	</li>
 </ul>
 <script>
-var start_cnt = $("#start_cnt").val();
-var end_cnt = $("#end_cnt").val();
-
 var list = new Vue({
 	el: '#timeline',
 	data: {
 		posts: []
 	},
-	created(){
-		fetch('/timeline/timeline_list2?start_cnt='+start_cnt+'&end_cnt='+end_cnt+'',{
-			method:'GET'//post 메소드
-			
-		}).then((response)=>{
-				if(response.ok){
-					return response.json();
-				}
-				throw new Error('error');
+	methods: {
+		//리스트출력 이벤트
+		event: function (end_cnt) {
+			fetch('/timeline/timeline_list2?start_cnt=0&end_cnt='+end_cnt+'',{
+				method:'GET'//GET 메소드
+				
+			}).then((response)=>{
+					if(response.ok){
+						return response.json();
+					}
+					throw new Error('error');
 
-		}).then((json)=>{
-			this.posts = json;
+			}).then((json)=>{
+				this.posts = json;
 
-		})
-		.catch((error)=>{
-			console.log(error);
-		});
-
+			})
+			.catch((error)=>{
+				console.log(error);
+			});
+		}
 	}
-
-
 });
 </script>
 

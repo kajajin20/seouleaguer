@@ -17,6 +17,9 @@ $(function(){
 	
 });
 $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 액션
+			 console.log("scrollTop: "+$(window).scrollTop());
+		 console.log("document_height: "+$(document).height());
+		 console.log("window_height: "+$(window).height());
      if($(window).scrollTop() >= $(document).height() - $(window).height()){
 	    //스크롤 이벤트후 end_cnt 값더한후 리스트 호출
 		var end_cnt = $("#end_cnt").val();
@@ -51,7 +54,6 @@ function insert_submit(){
 
 </form>
 <div id="loading"><img id="loading-image" src="/public/img/loading.gif" alt="Loading..." style="width:80px";/></div>
-<input type="hidden" name='start_cnt' id="start_cnt" value="0"/>
 <input type="hidden" name='end_cnt' id="end_cnt" value="10"/>
 
 
@@ -72,6 +74,7 @@ function insert_submit(){
 		</div>
 	</li>
 </ul>
+
 <script>
 var list = new Vue({
 	el: '#timeline',

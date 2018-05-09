@@ -5,7 +5,7 @@ body
  margin:0 auto;
  padding:0px;
  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
- background: linear-gradient(white, #D3D8E8);
+ background: #e9ebee;
 }
 #header_wrapper
 {
@@ -288,9 +288,9 @@ time, .time {
 
 #div3{
  width:100%;
- margin-top:30px;
+ margin-top:50px;
  vertical-align: middle;
- text-align: center;
+ /*text-align: center;*/
  background-color:linear-gradient(#67ae55, #578843);
  
 
@@ -308,6 +308,40 @@ time, .time {
 	margin-bottom:15px;
 	text-align: center;
 }
+.story{
+	border:1px solid #e1e1ea;
+	border-radius: 5px;
+	padding: 1em;
+	width:200px;
+
+	background-color:#FFF;
+	margin-bottom:15px;
+	text-align: center;
+}
+.story .title{
+	width:190px;
+	text-align: left;
+}
+.connect_friends{
+
+	width:200px;
+	margin-bottom:15px;
+	text-align: center;
+}
+.connect_friends .connect_friends_title{
+	border:1px solid #e1e1ea;
+	border-radius: 5px;
+	padding: 1em;
+	width:190px;
+	text-align: left;
+}
+.connect_friends_name{
+	font-size:1px;
+	padding-left: 5px;
+	text-align: left;
+}
+
+
 .title{
 	width:480px;
 	text-align: left;
@@ -327,6 +361,8 @@ time, .time {
 	padding-left: 5px;
 	text-align: left;
 	color:#4d79ff;
+	font-weight: bold;
+
 }
 .contents_img {
 	width:100%;
@@ -355,7 +391,211 @@ time, .time {
 
 }
 .box{
-	vertical-align:middle; 
+	float:left;
+	vertical-align:middle;	
 	display:inline-block;
+	margin-left:28%;
 }
-#myfile { width:0; height:0; }                    
+.box2{
+	width: 10%;
+	height: 700px;
+	float:left;
+	position: fixed;
+	text-align:left;
+	left:18%;
+	
+
+}
+.box3{
+	width: 13%;
+	height: 700px;
+	float:left;
+	position:fixed;
+	left:57%;
+}
+.box4{
+	width: 13%;
+	height: 700px;
+	float:right;
+	position:fixed;
+	right:0;
+}
+#myfile { width:0; height:0; }  
+
+/********************************************************************************************/
+/* ============================================================================================== 
+This copyright notice must be kept untouched in the stylesheet at all times.
+The original version of this stylesheet and the associated (x)html 
+is available at http://www.script-tutorials.com/facebook-like-menu-responsive/
+Copyright (c) Script Tutorials. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any way to fit your requirements.
+================================================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    background-color: #E9EAED;
+    height: 100%;
+}
+body {
+    color: #333333;
+    font-family: 'Helvetica Neue',Helvetica,Arial,'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+
+/* top level elements */
+#nav, #nav ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#nav {
+    background-color: rgb(66,103,178);
+    background: -moz-linear-gradient(top, rgba(66,103,178,1) 0%, rgba(59,88,152,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(66,103,178,1)), color-stop(100%, rgba(59,88,152,1)));
+    background: -webkit-linear-gradient(top, rgba(66,103,178,1) 0%, rgba(59,88,152,1) 100%);
+    background: -o-linear-gradient(top, rgba(66,103,178,1) 0%, rgba(59,88,152,1) 100%);
+    background: -ms-linear-gradient(top, rgba(66,103,178,1) 0%, rgba(59,88,152,1) 100%);
+    background: linear-gradient(to bottom, rgba(66,103,178,1) 0%, rgba(59,88,152,1) 100%);
+
+    border-bottom: 1px solid #3A4B7B;
+    height: 22px;
+    padding: 10px 0 10px 5px;
+    position: relative;
+}
+#nav > li {
+    float: left;
+    height: 22px;
+    padding-right: 6px;
+    position: relative;
+    text-align: left;
+}
+#nav .nav_main{
+	margin-left:17%;
+}
+#nav .nav_menu{
+	margin-left:5%;
+}
+#nav > li > a {
+    border: 1px solid transparent;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 27px;
+    line-height: 27px;
+    margin: -3px 0 0 -1px;
+    padding: 0 1px 0 11px;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+}
+#nav > li:hover > a, #nav > a:hover {
+    background-color: #425691;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    margin-right: -8px;
+    padding: 0 9px 0 11px;
+    position: relative;
+    z-index: 1;
+}
+#nav > li.subs:hover > a {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    border-bottom-width: 0;
+    border-radius: 2px 2px 0 0;
+    color: #000000;
+    text-shadow: 0 0 transparent;
+    z-index: 2;
+}
+
+/* top items separator */
+#nav > li:after {
+    background-color: #405791;
+    content: "";
+    height: 17px;
+    left: 1px;
+    position: absolute;
+    top: 2px;
+    width: 1px;
+}
+#nav > li:first-child:after {
+    background-color: transparent;
+}
+
+/* submenu */
+#nav ul {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(100, 100, 100, 0.4);
+    *border: 1px solid rgb(100, 100, 100);
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    display: none;
+    left: -1px;
+    margin-top: 2px;
+    min-width: 200px;
+    padding: 6px 0;
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+}
+
+#nav li:hover ul {
+    display: block;
+}
+#nav ul li a {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    color: #232B37;
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0 22px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#nav ul li a:hover {
+    background-color: #6D84B4;
+    border-bottom: 1px solid #3B5998;
+    border-top: 1px solid #3B5998;
+    color: #FFFFFF;
+}
+
+/* other elements */
+#nav_v2 {
+    display: none;
+}
+
+/* responsive rules */
+@media all and (max-width : 980px) {
+
+    #nav {
+        display: none;
+    }
+    #nav_v2 {
+        background-color: rgb(78,105,162);
+        border: 1px solid #3A4B7B;
+        color: #FFFFFF;
+        cursor: pointer;
+        display: block;
+        margin-bottom: 30px;
+        padding: 6px;
+        width: 100%;
+    }
+    #nav_v2 select {
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+}
+#nav input[type=text], select {
+	margin-left:2px;
+    width: 393px;
+	height: 23px;
+    border-radius: 1px;
+}
+.menu_header{
+	width: 100%;
+	position: fixed;
+	top:0px;
+	left:0px;
+}

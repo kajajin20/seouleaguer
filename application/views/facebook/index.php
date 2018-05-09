@@ -138,6 +138,7 @@
 <li><input type="password" id="joinpassword" placeholder="새 비밀번호"></li>
 <input type="hidden" id="name">
 <input type="hidden" id="sex">
+<!--
 <p>Birthday</p>
 <li>
 <select><option>Day</option></select>
@@ -145,6 +146,7 @@
 <select><option>Year</option></select>
 <a href="">Why do I need to provide my date of birth?</a>
 </li>
+-->
 <li><input type="radio" name="sex1" value="W">여성 <input type="radio" name="sex2" value="M">남성</li>
 <li id="terms">By clicking Create an account, you agree to our <a href="">Terms</a> and that <br>you have read our <a href="">Data Policy</a>, including our <a href="">Cookie Use</a>.</li>
 <li><button type="button" onclick="setValidate();">가입하기</button></li>

@@ -85,8 +85,29 @@ function insert_submit(){
 	
 }
 </script>
+<div class="menu_header">
+	<ul id="nav">
+		<li class="nav_main"><a href="#"><img src="/public/img/facebook_icon.jpg"/></a></li>
+		<span id="s1"></span>
+		<li class="subs">
+			<input type="text" placeholder="검색" style="border:0" />
+		</li>
+		<span id="s2"></span>
+		<li><a href="#"><img src="/public/img/search_img.jpg"/></a></li>
+		<li class="nav_menu"><img style="border-radius: 50%;width:28px;margin-left:10px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/></li>
+		<li class="subs"><a href="#">권성훈</a>
+			<ul>
+				<li><a href="javascript:logout();">로그아웃</a></li>
+			</ul>
+		</li>
+		<li><a href="#">홈</a></li>
+		<li><a href="#">친구찾기</a></li>
 
+		<li><img src="/public/img/facebook_menu_all.jpg"/></li>
 
+	</ul>
+</div>
+<!--
 <div id="header_wrapper">
  <div id="header">
  <li id="sitename"><a href="/facebook/index">facebook</a></li>
@@ -96,8 +117,25 @@ function insert_submit(){
  </form>
  </div>
 </div>
-
+-->
+<input type="hidden" id="end_cnt" value="10">
 <div id="div3">
+	<div class="box2">
+		<div>권성훈</div>
+		<div>뉴스피드</div>
+		<div>Messager</div>
+		<div>이벤트</div>
+		<div>그룹</div>
+		<div>페이지</div>
+		<div>친구목록</div>
+		<div>친구</div>
+		<div>과거의 오늘</div>
+		<div>페이지 피드</div>
+		<div>친구찾기</div>
+		<div>인사이트</div>
+		<div>사진</div>
+	</div>
+
 	<div class="box" id="timeline"> 
 		<div class="contents_title">
 			<form class="form_default" roll="group"  action="/facebook/timeline_insert" name="frm_input" id="frm_input"  method="post" enctype="multipart/form-data">
@@ -106,13 +144,14 @@ function insert_submit(){
 				</textarea>
 				<input type="file" name="myfile" id="myfile"></br>
 				<input type="hidden" name="name" id="name" value="<?php echo $_SESSION['name'];?>"></br>
-				<button id='btn-upload' class="button1 white selected" onfocus="this.blur();">사진</button>
-				<button id='btn-insert' type="button" onclick="insert_submit();">게시</button>
+				<hr style="border:solid 0.7px #e9ebee;"></br>
+				<button id='btn-upload' class="button1 white selected" onfocus="this.blur();"><img src="/public/img/picture_img.jpg"/></button>
+				<button id='btn-insert' type="button" onclick="insert_submit();"><img src="/public/img/insert_button.jpg"/></button>
 			</form>
 		</div>
 		<div v-for="post in posts" class="timeline" >
 			<div class="title">
-				<img style="border-radius: 50%;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<img style="border-radius: 50%;vertical-align:top;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
 				<span>{{post.name}}</span>
 			</div>
 			<div class="contents">
@@ -120,8 +159,106 @@ function insert_submit(){
 			</div>
 			<div v-if="post.image != '' " class="contents_img">
 				<img v-bind:src="post.imagepath+''+post.image" style='height: 100%; width: 100%; object-fit: contain'/>
+				
 			</div>
 			<div v-else>
+				
+			</div>
+			<div class="contents_good">
+				<hr style="border:solid 0.7px #e9ebee;">
+				<img src="/public/img/good_img.jpg" style="width:100%;"/>
+			</div>
+		</div>
+	</div>
+	<div class="box3">
+		<div class="story" >
+			<div class="contents">
+				<p>스토리</p>
+			</div>
+			<div class="title">
+				<img style="border-radius: 50%;vertical-align:top;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span>친구</span>
+			</div>
+		</div>
+		<div class="story" >
+			<div class="contents">
+				<p>게임</p>
+			</div>
+			<div class="title">
+				<img style="vertical-align:top;" src="/public/img/game_img.jpg"/>
+			</div>
+			<div class="contents">
+				<p>재미없는 게임 광고입니다~</p>
+			</div>
+		</div>
+		<div class="story" >
+			<div class="contents">
+				<p>추천페이지</p>
+			</div>
+			<div class="title">
+				<img style='width: 100%; object-fit: contain' src="/public/img/chuchen_img.jpg"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="box4">
+		<div class="connect_friends" >
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">성훈이</span>
+				</br>
+			</div>
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">지현이</span>
+				</br>
+			</div>
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">무경이</span>
+				<img style="vertical-align:middle;position:absolute;right:10%;" src="/public/img/green_point.jpg"/>
+				</br>
+			</div>
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">주성이</span>
+				<img style="vertical-align:middle;position:absolute;right:10%;" src="/public/img/green_point.jpg"/>
+				</br>
+			</div>
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">창오</span>
+				<img style="vertical-align:middle;position:absolute;right:10%;" src="/public/img/green_point.jpg"/>
+				</br>
+			</div>
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">재철이</span>
+				<img style="vertical-align:middle;position:absolute;right:10%;" src="/public/img/green_point.jpg"/>
+				</br>
+			</div>
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">국진이</span>
+				<img style="vertical-align:middle;position:absolute;right:10%;" src="/public/img/green_point.jpg"/>
+				</br>
+			</div>
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">정태</span>
+				<img style="vertical-align:middle;position:absolute;right:10%;" src="/public/img/green_point.jpg"/>
+				</br>
+			</div>
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">다슬이</span>
+				<img style="vertical-align:middle;position:absolute;right:10%;" src="/public/img/green_point.jpg"/>
+				</br>
+			</div>
+			<div class="connect_friends_title">
+				<img style="border-radius: 50%;vertical-align:middle;width:30px;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
+				<span class="connect_friends_name">은정이</span>
+				<img style="vertical-align:middle;position:absolute;right:10%;" src="/public/img/green_point.jpg"/>
 			</div>
 		</div>
 	</div>

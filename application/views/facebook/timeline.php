@@ -7,6 +7,9 @@
 <body>
 <?php 
 session_start();
+if(empty($_SESSION['id'])){
+	header('Location: /facebook/index');
+}
 ?>
 <script>
 $(function(){
@@ -121,26 +124,42 @@ function insert_submit(){
 <input type="hidden" id="end_cnt" value="10">
 <div id="div3">
 	<div class="box2">
-		<div>권성훈</div>
-		<div>뉴스피드</div>
-		<div>Messager</div>
-		<div>이벤트</div>
-		<div>그룹</div>
-		<div>페이지</div>
-		<div>친구목록</div>
-		<div>친구</div>
-		<div>과거의 오늘</div>
-		<div>페이지 피드</div>
-		<div>친구찾기</div>
-		<div>인사이트</div>
-		<div>사진</div>
+		<div>
+			<ul>
+				<li>권성훈</li>
+				<li>뉴스피드</li>
+				<li>Messenger</li>
+			</ul>
+			<br>
+			<span>바로가기</span>
+			<br>
+			<ul>
+				<li>페이지</li>
+				<li>이벤트</li>
+			</ul>
+			<br>
+			<span>둘러보기</span>
+			<br>
+			<ul>
+				<li>이벤트</li>
+				<li>페이지</li>
+				<li>친구목록</li>
+				<li>친구</li>
+				<li>과거의 오늘</li>
+				<li>페이지 피드</li>
+				<li>친구 찾기</li>
+				<li>인사이트</li>
+				<li>사진</li>
+			</ul>
+		</div>
+
 	</div>
 
 	<div class="box" id="timeline"> 
 		<div class="contents_title">
 			<form class="form_default" roll="group"  action="/facebook/timeline_insert" name="frm_input" id="frm_input"  method="post" enctype="multipart/form-data">
 				<img style="border-radius: 50%;" src="https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/c12.0.40.40/p40x40/10354686_10150004552801856_220367501106153455_n.jpg?_nc_cat=0&oh=1c89983047e057864f13e827a959b539&oe=5B9829F8"/>
-				<textarea id="memo" name="memo" style="border:0;" placeholder="<?php echo $_SESSION['name'];?>님, 무슨 생각을 하고 계신가요?">
+				<textarea id="memo" name="memo" style="border:0;font-size: 17px;" placeholder="<?php echo $_SESSION['name'];?>님, 무슨 생각을 하고 계신가요?">
 				</textarea>
 				<input type="file" name="myfile" id="myfile"></br>
 				<input type="hidden" name="name" id="name" value="<?php echo $_SESSION['name'];?>"></br>

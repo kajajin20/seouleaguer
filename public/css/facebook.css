@@ -312,7 +312,7 @@ time, .time {
 	border:1px solid #e1e1ea;
 	border-radius: 5px;
 	padding: 1em;
-	width:200px;
+	width:250px;
 
 	background-color:#FFF;
 	margin-bottom:15px;
@@ -403,9 +403,19 @@ time, .time {
 	position: fixed;
 	text-align:left;
 	left:18%;
-	
-
 }
+.box2 span{
+    font-size: 15px;
+    font-weight: bold;
+	color:#737373;
+}
+.box2 ul{
+   list-style:none;
+}
+.box2 li{
+   font-size: 14px;
+}
+
 .box3{
 	width: 13%;
 	height: 700px;
